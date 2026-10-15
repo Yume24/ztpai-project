@@ -1,0 +1,10 @@
+app:
+  scheduler:
+    enabled: false
+  jwt:
+    secret: test-secret-test-secret-test-secret-0123456789
+  admin:
+    email: admin@rendezvous.test
+    password: admin-pass-123
+  push:
+    url: http://localhost:9/push

@@ -1,0 +1,40 @@
+spring:
+  config:
+    import: optional:file:.env[.properties],optional:file:../.env[.properties]
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  data:
+    web:
+      pageable:
+        default-page-size: 20
+        max-page-size: 100
+  http:
+    clients:
+      connect-timeout: 5s
+      read-timeout: 10s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+app:
+  scheduler:
+    enabled: true
+  jwt:
+    secret: ${JWT_SECRET}
+    access-token-ttl: 15m
+    refresh-token-ttl: 30d
+  admin:
+    email: ${APP_ADMIN_EMAIL:}
+    password: ${APP_ADMIN_PASSWORD:}
+  push:
+    url: https://exp.host/--/api/v2/push/send
+    access-token: ${EXPO_ACCESS_TOKEN:}
